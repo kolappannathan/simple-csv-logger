@@ -82,29 +82,29 @@ namespace Core.Library
 
         private void WriteFormattedLog(LogLevel level, string text)
         {
-            string pretext;
+            string pretext = DateTime.Now.ToString(datetimeFormat);
             switch (level)
             {
                 case LogLevel.TRACE:
-                    pretext = DateTime.Now.ToString(datetimeFormat) + ",TRACE,";
+                    pretext += ",TRACE,";
                     break;
                 case LogLevel.INFO:
-                    pretext = DateTime.Now.ToString(datetimeFormat) + ",INFO,";
+                    pretext += ",INFO,";
                     break;
                 case LogLevel.DEBUG:
-                    pretext = DateTime.Now.ToString(datetimeFormat) + ",DEBUG,";
+                    pretext += ",DEBUG,";
                     break;
                 case LogLevel.WARNING:
-                    pretext = DateTime.Now.ToString(datetimeFormat) + ",WARNING,";
+                    pretext += ",WARNING,";
                     break;
                 case LogLevel.ERROR:
-                    pretext = DateTime.Now.ToString(datetimeFormat) + ",ERROR,";
+                    pretext += ",ERROR,";
                     break;
                 case LogLevel.FATAL:
-                    pretext = DateTime.Now.ToString(datetimeFormat) + ",FATAL,";
+                    pretext += ",FATAL,";
                     break;
                 default:
-                    pretext = ",,";
+                    pretext += ",,";
                     break;
             }
             WriteLine(pretext + text);
@@ -112,19 +112,12 @@ namespace Core.Library
 
         private void WriteLine(string text, bool append = true)
         {
-            try
+            using (var writer = new StreamWriter(logFilename, append, encoding))
             {
-                using (var writer = new StreamWriter(logFilename, append, encoding))
+                if (text != "")
                 {
-                    if (text != "")
-                    {
-                        writer.WriteLine(text);
-                    }
+                    writer.WriteLine(text);
                 }
-            }
-            catch
-            {
-                throw;
             }
         }
 
