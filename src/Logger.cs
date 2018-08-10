@@ -6,9 +6,23 @@ namespace Core.Library
 {
     public class Logger
     {
+        #region Declarations
+
+        private static class LogLevel
+        {
+            public static readonly string TRACE = "TRACE";
+            public static readonly string INFO = "INFO";
+            public static readonly string DEBUG = "DEBUG";
+            public static readonly string WARNING = "WARNING";
+            public static readonly string ERROR = "ERROR";
+            public static readonly string FATAL = "FATAL";
+        }
+
         private readonly string datetimeFormat;
         private readonly string logFilename;
         private readonly Encoding encoding;
+
+        #endregion Declarations
 
         /// <summary>
         /// Initiate an instance of Logger class.
@@ -17,7 +31,7 @@ namespace Core.Library
         public Logger()
         {
             datetimeFormat = "yyyy-MM-dd HH:mm:ss.fff";
-            logFilename = "Log.csv";
+            logFilename = System.AppDomain.CurrentDomain.BaseDirectory + "Log.csv";
             encoding = Encoding.UTF8;
 
             if (!File.Exists(logFilename))
@@ -25,6 +39,8 @@ namespace Core.Library
                 WriteLine("Time,Error Level,Error Message", false);
             }
         }
+
+        #region Public Logger functions
 
         /// <summary>
         /// Log a DEBUG message
@@ -80,36 +96,21 @@ namespace Core.Library
             WriteFormattedLog(LogLevel.WARNING, text);
         }
 
-        private void WriteFormattedLog(LogLevel level, string text)
+        #endregion Public Logger functions
+
+        #region Write functions
+
+        private void WriteFormattedLog(string logLevel, string text)
         {
-            string pretext = DateTime.Now.ToString(datetimeFormat);
-            switch (level)
-            {
-                case LogLevel.TRACE:
-                    pretext += ",TRACE,";
-                    break;
-                case LogLevel.INFO:
-                    pretext += ",INFO,";
-                    break;
-                case LogLevel.DEBUG:
-                    pretext += ",DEBUG,";
-                    break;
-                case LogLevel.WARNING:
-                    pretext += ",WARNING,";
-                    break;
-                case LogLevel.ERROR:
-                    pretext += ",ERROR,";
-                    break;
-                case LogLevel.FATAL:
-                    pretext += ",FATAL,";
-                    break;
-                default:
-                    pretext += ",,";
-                    break;
-            }
+            string pretext = $"{DateTime.Now.ToString(datetimeFormat)},{logLevel},";
             WriteLine(pretext + text);
         }
 
+        /// <summary>
+        /// Writes the input text into log file
+        /// </summary>
+        /// <param name="text">Input text</param>
+        /// <param name="append">Whether to append the old text or replace it</param>
         private void WriteLine(string text, bool append = true)
         {
             using (var writer = new StreamWriter(logFilename, append, encoding))
@@ -121,14 +122,6 @@ namespace Core.Library
             }
         }
 
-        private enum LogLevel
-        {
-            TRACE,
-            INFO,
-            DEBUG,
-            WARNING,
-            ERROR,
-            FATAL
-        }
+        #endregion Write Functions
     }
 }
