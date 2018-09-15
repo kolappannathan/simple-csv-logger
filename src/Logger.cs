@@ -46,32 +46,32 @@ namespace Core.Library
 
         public void Debug(Exception ex)
         {
-            WriteLog(LogLevel.DEBUG, $"Message: {ex.Message}; StackTrace: {ex.StackTrace}; InnerException:{ex.InnerException}");
+            WriteLog(LogLevel.DEBUG, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
         }
 
         public void Error(Exception ex)
         {
-            WriteLog(LogLevel.ERROR, $"Message: {ex.Message}; StackTrace: {ex.StackTrace}; InnerException:{ex.InnerException}");
+            WriteLog(LogLevel.ERROR, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
         }
 
         public void Fatal(Exception ex)
         {
-            WriteLog(LogLevel.FATAL, $"Message: {ex.Message}; StackTrace: {ex.StackTrace}; InnerException:{ex.InnerException}");
+            WriteLog(LogLevel.FATAL, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
         }
 
         public void Info(Exception ex)
         {
-            WriteLog(LogLevel.INFO, $"Message: {ex.Message}; StackTrace: {ex.StackTrace}; InnerException:{ex.InnerException}");
+            WriteLog(LogLevel.INFO, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
         }
 
         public void Trace(Exception ex)
         {
-            WriteLog(LogLevel.TRACE, $"Message: {ex.Message}; StackTrace: {ex.StackTrace}; InnerException:{ex.InnerException}");
+            WriteLog(LogLevel.TRACE, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
         }
 
         public void Warning(Exception ex)
         {
-            WriteLog(LogLevel.WARNING, $"Message: {ex.Message}; StackTrace: {ex.StackTrace}; InnerException:{ex.InnerException}");
+            WriteLog(LogLevel.WARNING, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
         }
 
         #endregion Exception Logs
@@ -84,7 +84,7 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Debug(string text)
         {
-            WriteLog(LogLevel.DEBUG, text);
+            WriteLog(LogLevel.DEBUG, text.Replace(',', ';'));
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Error(string text)
         {
-            WriteLog(LogLevel.ERROR, text);
+            WriteLog(LogLevel.ERROR, text.Replace(',', ';'));
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Fatal(string text)
         {
-            WriteLog(LogLevel.FATAL, text);
+            WriteLog(LogLevel.FATAL, text.Replace(',', ';'));
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Info(string text)
         {
-            WriteLog(LogLevel.INFO, text);
+            WriteLog(LogLevel.INFO, text.Replace(',', ';'));
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Trace(string text)
         {
-            WriteLog(LogLevel.TRACE, text);
+            WriteLog(LogLevel.TRACE, text.Replace(',', ';'));
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Warning(string text)
         {
-            WriteLog(LogLevel.WARNING, text);
+            WriteLog(LogLevel.WARNING, text.Replace(',', ';'));
         }
 
         #endregion Error message logs
