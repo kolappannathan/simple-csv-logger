@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>false</SignAssembly>
+    <Authors>Kolappan Nathan</Authors>
+    <Company />
+    <Product>Simple CSV Logger</Product>
+    <RepositoryUrl>https://github.com/kolappannathan/simple-csv-logger</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/kolappannathan/simple-csv-logger/blob/master/LICENSE</PackageLicenseUrl>
+    <Version>1.0.0.0</Version>
+  </PropertyGroup>
+
+</Project>

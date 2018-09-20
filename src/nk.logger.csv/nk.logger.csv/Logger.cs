@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 
-namespace Core.Library
+namespace nk.logger.csv
 {
     public class Logger
     {
@@ -44,34 +44,40 @@ namespace Core.Library
 
         #region Exception Logs
 
+        /// <summary>
+        /// Log an <see cref="Exception"/> as DEBUG
+        /// </summary>
+        /// <param name="ex"></param>
         public void Debug(Exception ex)
         {
-            WriteLog(LogLevel.DEBUG, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
+            if (ex != null)
+            {
+                WriteLog(LogLevel.DEBUG, ExceptionToErrorString(ex));
+            }
         }
 
+        /// <summary>
+        /// Log an <see cref="Exception"/> as ERROR
+        /// </summary>
+        /// <param name="ex"></param>
         public void Error(Exception ex)
         {
-            WriteLog(LogLevel.ERROR, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
+            if (ex != null)
+            {
+                WriteLog(LogLevel.ERROR, ExceptionToErrorString(ex));
+            }
         }
 
+        /// <summary>
+        /// Log an <see cref="Exception"/> as Fatal
+        /// </summary>
+        /// <param name="ex"></param>
         public void Fatal(Exception ex)
         {
-            WriteLog(LogLevel.FATAL, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
-        }
-
-        public void Info(Exception ex)
-        {
-            WriteLog(LogLevel.INFO, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
-        }
-
-        public void Trace(Exception ex)
-        {
-            WriteLog(LogLevel.TRACE, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
-        }
-
-        public void Warning(Exception ex)
-        {
-            WriteLog(LogLevel.WARNING, $"Message: {ex.Message.Replace(',', ";")}; StackTrace: {ex.StackTrace.Replace(',', ";")}; InnerException:{ex.InnerException.Replace(',', ";")}");
+            if (ex != null)
+            {
+                WriteLog(LogLevel.FATAL, ExceptionToErrorString(ex));
+            }
         }
 
         #endregion Exception Logs
@@ -84,7 +90,10 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Debug(string text)
         {
-            WriteLog(LogLevel.DEBUG, text.Replace(',', ';'));
+            if (text != null)
+            {
+                WriteLog(LogLevel.DEBUG, text.Replace(',', ';'));
+            }
         }
 
         /// <summary>
@@ -93,7 +102,10 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Error(string text)
         {
-            WriteLog(LogLevel.ERROR, text.Replace(',', ';'));
+            if (text != null)
+            {
+                WriteLog(LogLevel.ERROR, text.Replace(',', ';'));
+            }
         }
 
         /// <summary>
@@ -102,7 +114,10 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Fatal(string text)
         {
-            WriteLog(LogLevel.FATAL, text.Replace(',', ';'));
+            if (text != null)
+            {
+                WriteLog(LogLevel.FATAL, text.Replace(',', ';'));
+            }
         }
 
         /// <summary>
@@ -111,7 +126,10 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Info(string text)
         {
-            WriteLog(LogLevel.INFO, text.Replace(',', ';'));
+            if (text != null)
+            {
+                WriteLog(LogLevel.INFO, text.Replace(',', ';'));
+            }
         }
 
         /// <summary>
@@ -120,7 +138,10 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Trace(string text)
         {
-            WriteLog(LogLevel.TRACE, text.Replace(',', ';'));
+            if (text != null)
+            {
+                WriteLog(LogLevel.TRACE, text.Replace(',', ';'));
+            }
         }
 
         /// <summary>
@@ -129,7 +150,10 @@ namespace Core.Library
         /// <param name="text">Message</param>
         public void Warning(string text)
         {
-            WriteLog(LogLevel.WARNING, text.Replace(',', ';'));
+            if (text != null)
+            {
+                WriteLog(LogLevel.WARNING, text.Replace(',', ';'));
+            }
         }
 
         #endregion Error message logs
@@ -138,6 +162,11 @@ namespace Core.Library
 
         #region Write functions
 
+        /// <summary>
+        /// Adds date time, loglevel to error text and calls <see cref="WriteLine(string, bool)"/>
+        /// </summary>
+        /// <param name="logLevel"></param>
+        /// <param name="text"></param>
         private void WriteLog(string logLevel, string text)
         {
             string pretext = $"{DateTime.Now.ToString(datetimeFormat)},{logLevel},";
@@ -161,5 +190,32 @@ namespace Core.Library
         }
 
         #endregion Write Functions
+
+        #region Helper Functions
+
+        /// <summary>
+        /// Builds error text from an <see cref="Exception"/>
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
+        private string ExceptionToErrorString(Exception ex)
+        {
+            string error = "";
+            if (!string.IsNullOrEmpty(ex.Message))
+            {
+                error += $"Message: {ex.Message.Replace(',', ';')};";
+            }
+            if (!string.IsNullOrEmpty(ex.StackTrace))
+            {
+                error += $"StackTrace: {ex.StackTrace.Replace(',', ';')};";
+            }
+            if (ex.InnerException != null)
+            {
+                error += $"InnerException:{ex.InnerException.Message.Replace(',', ';')}";
+            }
+            return error;
+        }
+
+        #endregion Helper Functions
     }
 }
