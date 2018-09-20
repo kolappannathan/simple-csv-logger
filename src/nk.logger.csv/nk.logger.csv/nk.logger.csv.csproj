@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
     <Authors>Kolappan Nathan</Authors>
     <Company />
     <Product>Simple CSV Logger</Product>
@@ -12,6 +12,13 @@
     <Description>A Logger to log errors and exceptions inrto a CSV file.</Description>
     <PackageProjectUrl>https://kolappannathan.github.io/projects/simple-csv-logger/index.html</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyOriginatorKeyFile>simple-csv-logger.pfx</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <Copyright>Kolappan Nathan</Copyright>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>Library</RepositoryType>
+    <PackageTags>logger, csv-logger</PackageTags>
+    <NeutralLanguage>en-IN</NeutralLanguage>
   </PropertyGroup>
 
 </Project>
