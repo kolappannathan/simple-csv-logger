@@ -21,6 +21,7 @@ namespace nk.logger.csv
         private readonly string datetimeFormat;
         private readonly string logFilename;
         private readonly Encoding encoding;
+        private readonly char replacementVal;
 
         #endregion Declarations
 
@@ -28,11 +29,21 @@ namespace nk.logger.csv
         /// Initiate an instance of Logger class.
         /// If log file does not exist, it will be created automatically.
         /// </summary>
-        public Logger()
+        /// <param name="dateFormat">Date Time format.</param>
+        /// <param name="fileName">Name of the log file. Without extension</param>
+        /// <param name="relativePath">Relative path from Base directory.</param>
+        /// <param name="replacementValue">Value to replace comma (,) with. Uses semicolon by default.</param>
+        public Logger(string dateFormat, string fileName, string relativePath = "", char replacementValue = ';')
         {
-            datetimeFormat = "yyyy-MM-dd HH:mm:ss.fff";
-            logFilename = AppDomain.CurrentDomain.BaseDirectory + "Log.csv";
+            datetimeFormat = dateFormat;
+            logFilename = AppDomain.CurrentDomain.BaseDirectory;
+            if(relativePath != "")
+            {
+                logFilename += $"{relativePath}/";
+            }
+            logFilename += $"{fileName}.csv";
             encoding = Encoding.UTF8;
+            replacementVal = replacementValue;
 
             if (!File.Exists(logFilename))
             {
@@ -92,7 +103,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.DEBUG, text.Replace(',', ';'));
+                WriteLog(LogLevel.DEBUG, text.Replace(',', replacementVal));
             }
         }
 
@@ -104,7 +115,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.ERROR, text.Replace(',', ';'));
+                WriteLog(LogLevel.ERROR, text.Replace(',', replacementVal));
             }
         }
 
@@ -116,7 +127,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.FATAL, text.Replace(',', ';'));
+                WriteLog(LogLevel.FATAL, text.Replace(',', replacementVal));
             }
         }
 
@@ -128,7 +139,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.INFO, text.Replace(',', ';'));
+                WriteLog(LogLevel.INFO, text.Replace(',', replacementVal));
             }
         }
 
@@ -140,7 +151,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.TRACE, text.Replace(',', ';'));
+                WriteLog(LogLevel.TRACE, text.Replace(',', replacementVal));
             }
         }
 
@@ -152,7 +163,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.WARNING, text.Replace(',', ';'));
+                WriteLog(LogLevel.WARNING, text.Replace(',', replacementVal));
             }
         }
 
@@ -203,15 +214,15 @@ namespace nk.logger.csv
             string error = "";
             if (!string.IsNullOrEmpty(ex.Message))
             {
-                error += $"Message: {ex.Message.Replace(',', ';')};";
+                error += $"Message: {ex.Message.Replace(',', replacementVal)};";
             }
             if (!string.IsNullOrEmpty(ex.StackTrace))
             {
-                error += $"StackTrace: {ex.StackTrace.Replace(',', ';')};";
+                error += $"StackTrace: {ex.StackTrace.Replace(',', replacementVal)};";
             }
             if (ex.InnerException != null)
             {
-                error += $"InnerException:{ex.InnerException.Message.Replace(',', ';')}";
+                error += $"InnerException:{ex.InnerException.Message.Replace(',', replacementVal)}";
             }
             return error;
         }
