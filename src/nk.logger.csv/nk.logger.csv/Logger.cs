@@ -10,12 +10,12 @@ namespace nk.logger.csv
 
         private static class LogLevel
         {
-            public static readonly string TRACE = "TRACE";
-            public static readonly string INFO = "INFO";
-            public static readonly string DEBUG = "DEBUG";
-            public static readonly string WARNING = "WARNING";
-            public static readonly string ERROR = "ERROR";
-            public static readonly string FATAL = "FATAL";
+            public const string TRACE = "TRACE";
+            public const string INFO = "INFO";
+            public const string DEBUG = "DEBUG";
+            public const string WARNING = "WARNING";
+            public const string ERROR = "ERROR";
+            public const string FATAL = "FATAL";
         }
 
         private readonly string datetimeFormat;
