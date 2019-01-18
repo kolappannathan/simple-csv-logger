@@ -18,9 +18,9 @@ namespace nk.logger.csv
             public const string FATAL = "FATAL";
         }
 
+        private readonly Encoding encoding = Encoding.UTF8;
         private readonly string datetimeFormat;
         private readonly string logFilename;
-        private readonly Encoding encoding;
         private readonly char replacementVal;
 
         #endregion Declarations
@@ -36,14 +36,14 @@ namespace nk.logger.csv
         public Logger(string dateFormat, string fileName, string relativePath = "", char replacementValue = ';')
         {
             datetimeFormat = dateFormat;
+            replacementVal = replacementValue;
+            
             logFilename = AppDomain.CurrentDomain.BaseDirectory;
             if(relativePath != "")
             {
                 logFilename += $"{relativePath}/";
             }
             logFilename += $"{fileName}.csv";
-            encoding = Encoding.UTF8;
-            replacementVal = replacementValue;
 
             if (!File.Exists(logFilename))
             {
