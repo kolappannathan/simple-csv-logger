@@ -21,6 +21,7 @@
     <NeutralLanguage>en-IN</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <ApplicationIcon>csv.logger.ico</ApplicationIcon>
+    <PackageIconUrl>https://raw.githubusercontent.com/kolappannathan/simple-csv-logger/master/icons/csv.logger.ico</PackageIconUrl>
   </PropertyGroup>
 
 </Project>
