@@ -6,10 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+ - Added new icons
  - Added changelog
+ - Added nuget spec
 ### Changed
  - Updated ReadMe
  - Small changes to assignment of values in constructor
+ - Reorganized some folders
+### Removed
+ - Removed signing from packages
 
 ## [1.0.1] - 2018-10-24
 ### Changed

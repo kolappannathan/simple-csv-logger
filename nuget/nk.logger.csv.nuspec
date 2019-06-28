@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>nk.logger.csv</id>
+    <version>1.0.1</version>
+    <authors>Kolappan Nathan</authors>
+    <owners>Kolappan Nathan</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://kolappannathan.github.io/projects/simple-csv-logger/index.html</projectUrl>
+    <description>A Logger to log errors and exceptions inrto a CSV file.</description>
+    <copyright>Kolappan Nathan</copyright>
+    <tags>logger, csv-logger</tags>
+    <repository type="Library" url="https://github.com/kolappannathan/simple-csv-logger" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="lib\netstandard2.0\nk.logger.csv.dll" target="lib\netstandard2.0\nk.logger.csv.dll" />
+  </files>
+</package>

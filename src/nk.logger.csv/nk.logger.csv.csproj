@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <Authors>Kolappan Nathan</Authors>
     <Company />
     <Product>Simple CSV Logger</Product>
     <RepositoryUrl>https://github.com/kolappannathan/simple-csv-logger</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/kolappannathan/simple-csv-logger/blob/master/LICENSE</PackageLicenseUrl>
-    <Version>1.0.1.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <Version>1.0.2.0</Version>
     <Description>A Logger to log errors and exceptions inrto a CSV file.</Description>
     <PackageProjectUrl>https://kolappannathan.github.io/projects/simple-csv-logger/index.html</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -16,9 +16,11 @@
     <DelaySign>false</DelaySign>
     <Copyright>Kolappan Nathan</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <RepositoryType>Library</RepositoryType>
-    <PackageTags>logger, csv-logger</PackageTags>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>logger, csv logger, excel logger, error logger</PackageTags>
     <NeutralLanguage>en-IN</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <ApplicationIcon>csv.logger.ico</ApplicationIcon>
   </PropertyGroup>
 
 </Project>
