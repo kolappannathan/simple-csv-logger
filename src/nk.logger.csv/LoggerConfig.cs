@@ -49,6 +49,10 @@ namespace nk.logger.csv
 
         public LoggerConfig SetDateFormat(string dateFormat)
         {
+            if (string.IsNullOrWhiteSpace(dateFormat))
+            {
+                throw new ArgumentNullException("Date Format cannot be empty");
+            }
             this.DateFormat = dateFormat;
             return this;
         }
@@ -64,6 +68,10 @@ namespace nk.logger.csv
 
         public LoggerConfig SetFileName(string fileName)
         {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException("File name cannot be empty");
+            }
             this.FileName = fileName;
             return this;
         }
@@ -79,6 +87,10 @@ namespace nk.logger.csv
 
         public LoggerConfig SetRelativePath(string relativePath)
         {
+            if (relativePath == null)
+            {
+                throw new ArgumentNullException("Relative path cannot be null");
+            }
             this.RelativePath = relativePath;
             return this;
         }
@@ -94,6 +106,10 @@ namespace nk.logger.csv
 
         public LoggerConfig SetReplacementValue(string replacementVal)
         {
+            if (string.IsNullOrEmpty(replacementVal))
+            {
+                throw new ArgumentNullException("Replacement Value cannot be empty");
+            }
             this.ReplacementValue = replacementVal;
             return this;
         }
