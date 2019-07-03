@@ -29,22 +29,39 @@ namespace nk.logger.csv
         /// Initiate an instance of Logger class.
         /// If log file does not exist, it will be created automatically.
         /// </summary>
-        /// <param name="dateFormat">Date Time format.</param>
-        /// <param name="fileName">Name of the log file. Without extension</param>
-        /// <param name="relativePath">Relative path from Base directory.</param>
-        /// <param name="replacementValue">Value to replace comma (,) with. Uses semicolon by default.</param>
-        public Logger(string dateFormat, string fileName, string relativePath = "", char replacementValue = ';')
+        public Logger()
         {
-            datetimeFormat = dateFormat;
-            replacementVal = replacementValue;
-            
-            logFilename = AppDomain.CurrentDomain.BaseDirectory;
-            if(relativePath != "")
-            {
-                logFilename += $"{relativePath}/";
-            }
-            logFilename += $"{fileName}.csv";
+            var loggerConfig = new LoggerConfig();
+            datetimeFormat = loggerConfig.GetDateTimeFormat();
+            replacementVal = loggerConfig.GetReplacementValue();
+            logFilename = GetFullFileName(loggerConfig);
+            InitializeLogger();
+        }
 
+        public Logger(LoggerConfig loggerConfig)
+        {
+            datetimeFormat = loggerConfig.GetDateTimeFormat();
+            replacementVal = loggerConfig.GetReplacementValue();
+            logFilename = GetFullFileName(loggerConfig);
+            InitializeLogger();
+        }
+
+        private string GetFullFileName(LoggerConfig loggerConfig)
+        {
+            var fullFilename = AppDomain.CurrentDomain.BaseDirectory;
+            if (loggerConfig.GetRelativePath() != "")
+            {
+                fullFilename += $"{loggerConfig.GetRelativePath()}/";
+            }
+            fullFilename += $"{loggerConfig.GetFileName()}.csv";
+            return fullFilename;
+        }
+
+        /// <summary>
+        /// Checks if a file previously exists, if not creates the file with headings
+        /// </summary>
+        private void InitializeLogger()
+        {
             if (!File.Exists(logFilename))
             {
                 WriteLine("Time,Error Level,Error Message", false);

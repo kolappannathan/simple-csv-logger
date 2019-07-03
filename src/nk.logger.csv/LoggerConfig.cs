@@ -10,7 +10,7 @@ namespace nk.logger.csv
         /// Format for the date time recorded in error log.
         /// Ex: "yyyy-MM-dd HH:mm:ss.fff" 
         /// </summary>
-        private string DateFormat { get; set; }
+        private string DateTimeFormat { get; set; }
 
         /// <summary>
         /// Name of the log file (without extension).
@@ -28,7 +28,7 @@ namespace nk.logger.csv
         /// Value to replace comma (,) with.
         /// Ex: ";"
         /// </summary>
-        private string ReplacementValue { get; set; }
+        private char ReplacementValue { get; set; }
 
         #endregion [Variable Declarations]
 
@@ -37,27 +37,27 @@ namespace nk.logger.csv
         /// </summary>
         public LoggerConfig()
         {
-            DateFormat = "yyyy-MM-dd HH:mm:ss.fff";
+            DateTimeFormat = "yyyy-MM-dd HH:mm:ss.fff";
             FileName = "ErrorLog";
             RelativePath = "";
-            ReplacementValue = ";";
+            ReplacementValue = ';';
         }
 
         #region [Date Format]
 
-        public LoggerConfig SetDateFormat(string dateFormat)
+        public LoggerConfig SetDateTimeFormat(string dateTimeFormat)
         {
-            if (string.IsNullOrWhiteSpace(dateFormat))
+            if (string.IsNullOrWhiteSpace(dateTimeFormat))
             {
                 throw new ArgumentNullException("Date Format cannot be empty");
             }
-            this.DateFormat = dateFormat;
+            this.DateTimeFormat = dateTimeFormat;
             return this;
         }
 
-        public string GetDateFormat()
+        public string GetDateTimeFormat()
         {
-            return DateFormat;
+            return DateTimeFormat;
         }
 
         #endregion [Date Format]
@@ -102,9 +102,9 @@ namespace nk.logger.csv
 
         #region [Replacement Value]
 
-        public LoggerConfig SetReplacementValue(string replacementVal)
+        public LoggerConfig SetReplacementValue(char replacementVal)
         {
-            if (string.IsNullOrEmpty(replacementVal))
+            if (replacementVal != ' ')
             {
                 throw new ArgumentNullException("Replacement Value cannot be empty");
             }
@@ -112,7 +112,7 @@ namespace nk.logger.csv
             return this;
         }
 
-        public string GetReplacementValue()
+        public char GetReplacementValue()
         {
             return ReplacementValue;
         }
