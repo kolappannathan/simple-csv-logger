@@ -198,6 +198,7 @@ namespace nk.logger.csv
         private void WriteLog(string logLevel, string text)
         {
             text = text.Replace(',', replacementVal);
+            text = RemoveLineEndings(text);
             string pretext = $"{DateTime.Now.ToString(datetimeFormat)},{logLevel},";
             WriteLine(pretext + text);
         }
@@ -243,6 +244,26 @@ namespace nk.logger.csv
                 error += $"InnerException:{ex.InnerException.Message}";
             }
             return error;
+        }
+
+        /// <summary>
+        /// Removes all line endings from the text
+        /// Ref: https://stackoverflow.com/a/6765676/5407188
+        /// </summary>
+        private static string RemoveLineEndings(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+            string lineSeparator = ((char)0x2028).ToString();
+            string paragraphSeparator = ((char)0x2029).ToString();
+
+            return value.Replace("\r\n", string.Empty)
+                        .Replace("\n", string.Empty)
+                        .Replace("\r", string.Empty)
+                        .Replace(lineSeparator, string.Empty)
+                        .Replace(paragraphSeparator, string.Empty);
         }
 
         #endregion Helper Functions
