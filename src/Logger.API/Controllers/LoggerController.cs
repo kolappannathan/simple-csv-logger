@@ -13,7 +13,7 @@ namespace Logger.API.Controllers
             var logger = new nk.logger.csv.Logger();
             var exception = new ArgumentNullException("arg-1");
             logger.Error(exception);
-            logger.Info("sample info text");
+            logger.Info("sample info text,");
             return "Completed";
         }
     }

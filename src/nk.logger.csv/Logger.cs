@@ -120,7 +120,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.DEBUG, text.Replace(',', replacementVal));
+                WriteLog(LogLevel.DEBUG, text);
             }
         }
 
@@ -132,7 +132,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.ERROR, text.Replace(',', replacementVal));
+                WriteLog(LogLevel.ERROR, text);
             }
         }
 
@@ -144,7 +144,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.FATAL, text.Replace(',', replacementVal));
+                WriteLog(LogLevel.FATAL, text);
             }
         }
 
@@ -156,7 +156,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.INFO, text.Replace(',', replacementVal));
+                WriteLog(LogLevel.INFO, text);
             }
         }
 
@@ -168,7 +168,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.TRACE, text.Replace(',', replacementVal));
+                WriteLog(LogLevel.TRACE, text);
             }
         }
 
@@ -180,7 +180,7 @@ namespace nk.logger.csv
         {
             if (text != null)
             {
-                WriteLog(LogLevel.WARNING, text.Replace(',', replacementVal));
+                WriteLog(LogLevel.WARNING, text);
             }
         }
 
@@ -197,6 +197,7 @@ namespace nk.logger.csv
         /// <param name="text"></param>
         private void WriteLog(string logLevel, string text)
         {
+            text = text.Replace(',', replacementVal);
             string pretext = $"{DateTime.Now.ToString(datetimeFormat)},{logLevel},";
             WriteLine(pretext + text);
         }
@@ -231,15 +232,15 @@ namespace nk.logger.csv
             string error = "";
             if (!string.IsNullOrEmpty(ex.Message))
             {
-                error += $"Message: {ex.Message.Replace(',', replacementVal)};";
+                error += $"Message: {ex.Message};";
             }
             if (!string.IsNullOrEmpty(ex.StackTrace))
             {
-                error += $"StackTrace: {ex.StackTrace.Replace(',', replacementVal)};";
+                error += $"StackTrace: {ex.StackTrace};";
             }
             if (ex.InnerException != null)
             {
-                error += $"InnerException:{ex.InnerException.Message.Replace(',', replacementVal)}";
+                error += $"InnerException:{ex.InnerException.Message}";
             }
             return error;
         }
