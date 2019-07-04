@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace nk.logger.csv
 {
@@ -30,6 +31,8 @@ namespace nk.logger.csv
         /// </summary>
         private char ReplacementValue { get; set; }
 
+        public readonly Encoding encoding;
+
         #endregion [Variable Declarations]
 
         /// <summary>
@@ -41,6 +44,7 @@ namespace nk.logger.csv
             FileName = "ErrorLog";
             RelativePath = "";
             ReplacementValue = ';';
+            encoding = Encoding.UTF8;
         }
 
         #region [Date Format]
@@ -118,6 +122,23 @@ namespace nk.logger.csv
         }
 
         #endregion [Replacement Value]
+
+        #region [Full File Name]
+
+        /// <summary>
+        /// Combaines base direstory, relative path and file name from config and return full file path
+        /// </summary>
+        public string GetFullFileName()
+        {
+            var fullFilename = AppDomain.CurrentDomain.BaseDirectory;
+            if (RelativePath != "")
+            {
+                fullFilename += $"{RelativePath}/";
+            }
+            fullFilename += $"{FileName}.csv";
+            return fullFilename;
+        }
+        #endregion [Full File Name]
 
     }
 }

@@ -18,51 +18,35 @@ namespace nk.logger.csv
             public const string FATAL = "FATAL";
         }
 
-        private readonly Encoding encoding = Encoding.UTF8;
-        private readonly string datetimeFormat;
-        private readonly string logFilename;
-        private readonly char replacementVal;
+        private readonly LoggerConfig config; 
 
         #endregion Declarations
 
         /// <summary>
-        /// Initiate an instance of Logger class.
-        /// If log file does not exist, it will be created automatically.
+        /// Initiate an instance of Logger class with default config
         /// </summary>
         public Logger()
         {
-            var loggerConfig = new LoggerConfig();
-            datetimeFormat = loggerConfig.GetDateTimeFormat();
-            replacementVal = loggerConfig.GetReplacementValue();
-            logFilename = GetFullFileName(loggerConfig);
-            InitializeLogger();
+            config = new LoggerConfig();
+            InitializeLogFile();
         }
 
+        /// <summary>
+        /// Initiate an instance of Logger class with custom config
+        /// </summary>
+        /// <param name="loggerConfig">Custom configuration</param>
         public Logger(LoggerConfig loggerConfig)
         {
-            datetimeFormat = loggerConfig.GetDateTimeFormat();
-            replacementVal = loggerConfig.GetReplacementValue();
-            logFilename = GetFullFileName(loggerConfig);
-            InitializeLogger();
-        }
-
-        private string GetFullFileName(LoggerConfig loggerConfig)
-        {
-            var fullFilename = AppDomain.CurrentDomain.BaseDirectory;
-            if (loggerConfig.GetRelativePath() != "")
-            {
-                fullFilename += $"{loggerConfig.GetRelativePath()}/";
-            }
-            fullFilename += $"{loggerConfig.GetFileName()}.csv";
-            return fullFilename;
+            config = loggerConfig;
+            InitializeLogFile();
         }
 
         /// <summary>
         /// Checks if a file previously exists, if not creates the file with headings
         /// </summary>
-        private void InitializeLogger()
+        private void InitializeLogFile()
         {
-            if (!File.Exists(logFilename))
+            if (!File.Exists(config.GetFullFileName()))
             {
                 WriteLine("Time,Error Level,Error Message", false);
             }
@@ -75,7 +59,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log an <see cref="Exception"/> as DEBUG
         /// </summary>
-        /// <param name="ex"></param>
+        /// <param name="ex">Exception to log</param>
         public void Debug(Exception ex)
         {
             if (ex != null)
@@ -87,7 +71,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log an <see cref="Exception"/> as ERROR
         /// </summary>
-        /// <param name="ex"></param>
+        /// <param name="ex">Exception to log</param>
         public void Error(Exception ex)
         {
             if (ex != null)
@@ -99,7 +83,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log an <see cref="Exception"/> as Fatal
         /// </summary>
-        /// <param name="ex"></param>
+        /// <param name="ex">Exception to log</param>
         public void Fatal(Exception ex)
         {
             if (ex != null)
@@ -115,7 +99,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log a DEBUG message
         /// </summary>
-        /// <param name="text">Message</param>
+        /// <param name="text">Message to log</param>
         public void Debug(string text)
         {
             if (text != null)
@@ -127,7 +111,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log an ERROR message
         /// </summary>
-        /// <param name="text">Message</param>
+        /// <param name="text">Message to log</param>
         public void Error(string text)
         {
             if (text != null)
@@ -139,7 +123,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log a FATAL ERROR message
         /// </summary>
-        /// <param name="text">Message</param>
+        /// <param name="text">Message to log</param>
         public void Fatal(string text)
         {
             if (text != null)
@@ -151,7 +135,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log an INFO message
         /// </summary>
-        /// <param name="text">Message</param>
+        /// <param name="text">Message to log</param>
         public void Info(string text)
         {
             if (text != null)
@@ -163,7 +147,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log a TRACE message
         /// </summary>
-        /// <param name="text">Message</param>
+        /// <param name="text">Message to log</param>
         public void Trace(string text)
         {
             if (text != null)
@@ -175,7 +159,7 @@ namespace nk.logger.csv
         /// <summary>
         /// Log a WARNING message
         /// </summary>
-        /// <param name="text">Message</param>
+        /// <param name="text">Message to log</param>
         public void Warning(string text)
         {
             if (text != null)
@@ -193,14 +177,15 @@ namespace nk.logger.csv
         /// <summary>
         /// Adds date time, loglevel to error text and calls <see cref="WriteLine(string, bool)"/>
         /// </summary>
-        /// <param name="logLevel"></param>
-        /// <param name="text"></param>
         private void WriteLog(string logLevel, string text)
         {
-            text = text.Replace(',', replacementVal);
-            text = RemoveLineEndings(text);
-            string pretext = $"{DateTime.Now.ToString(datetimeFormat)},{logLevel},";
-            WriteLine(pretext + text);
+            if (!string.IsNullOrEmpty(text))
+            {
+                text = text.Replace(',', config.GetReplacementValue());
+                text = RemoveLineEndings(text);
+                string pretext = $"{DateTime.Now.ToString(config.GetDateTimeFormat())},{logLevel},";
+                WriteLine(pretext + text);
+            }
         }
 
         /// <summary>
@@ -212,7 +197,7 @@ namespace nk.logger.csv
         {
             if (text != null || text != "")
             {
-                using (var writer = new StreamWriter(logFilename, append, encoding))
+                using (var writer = new StreamWriter(config.GetFullFileName(), append, config.encoding))
                 {
                     writer.WriteLine(text);
                 }
@@ -226,8 +211,6 @@ namespace nk.logger.csv
         /// <summary>
         /// Builds error text from an <see cref="Exception"/>
         /// </summary>
-        /// <param name="ex"></param>
-        /// <returns></returns>
         private string ExceptionToErrorString(Exception ex)
         {
             string error = "";
@@ -252,18 +235,11 @@ namespace nk.logger.csv
         /// </summary>
         private static string RemoveLineEndings(string value)
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                return value;
-            }
-            string lineSeparator = ((char)0x2028).ToString();
-            string paragraphSeparator = ((char)0x2029).ToString();
-
             return value.Replace("\r\n", string.Empty)
                         .Replace("\n", string.Empty)
                         .Replace("\r", string.Empty)
-                        .Replace(lineSeparator, string.Empty)
-                        .Replace(paragraphSeparator, string.Empty);
+                        .Replace(((char)0x2028).ToString(), string.Empty) // line separator
+                        .Replace(((char)0x2029).ToString(), string.Empty); // paragraph separator
         }
 
         #endregion Helper Functions

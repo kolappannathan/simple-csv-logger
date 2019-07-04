@@ -11,7 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
  - Multiple comma replacement are merged into one
- - Initialization steps are moved from constructor into a separate functions
+ - Initialization steps are moved from constructor into a separate function
+ - Paramets to Logger are now replaced by config
 
 ## [1.0.2] - 2019-06-28
 ### Added
