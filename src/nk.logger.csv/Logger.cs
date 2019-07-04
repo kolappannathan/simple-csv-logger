@@ -60,37 +60,19 @@ namespace nk.logger.csv
         /// Log an <see cref="Exception"/> as DEBUG
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Debug(Exception ex)
-        {
-            if (ex != null)
-            {
-                WriteLog(LogLevel.DEBUG, ExceptionToErrorString(ex));
-            }
-        }
+        public void Debug(Exception ex) => WriteLog(LogLevel.DEBUG, ExceptionToErrorString(ex));
 
         /// <summary>
         /// Log an <see cref="Exception"/> as ERROR
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Error(Exception ex)
-        {
-            if (ex != null)
-            {
-                WriteLog(LogLevel.ERROR, ExceptionToErrorString(ex));
-            }
-        }
+        public void Error(Exception ex) => WriteLog(LogLevel.ERROR, ExceptionToErrorString(ex));
 
         /// <summary>
         /// Log an <see cref="Exception"/> as Fatal
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Fatal(Exception ex)
-        {
-            if (ex != null)
-            {
-                WriteLog(LogLevel.FATAL, ExceptionToErrorString(ex));
-            }
-        }
+        public void Fatal(Exception ex) => WriteLog(LogLevel.FATAL, ExceptionToErrorString(ex));
 
         #endregion Exception Logs
 
@@ -100,73 +82,37 @@ namespace nk.logger.csv
         /// Log a DEBUG message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Debug(string text)
-        {
-            if (text != null)
-            {
-                WriteLog(LogLevel.DEBUG, text);
-            }
-        }
+        public void Debug(string text) => WriteLog(LogLevel.DEBUG, text);
 
         /// <summary>
         /// Log an ERROR message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Error(string text)
-        {
-            if (text != null)
-            {
-                WriteLog(LogLevel.ERROR, text);
-            }
-        }
+        public void Error(string text) => WriteLog(LogLevel.ERROR, text);
 
         /// <summary>
         /// Log a FATAL ERROR message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Fatal(string text)
-        {
-            if (text != null)
-            {
-                WriteLog(LogLevel.FATAL, text);
-            }
-        }
+        public void Fatal(string text) => WriteLog(LogLevel.FATAL, text);
 
         /// <summary>
         /// Log an INFO message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Info(string text)
-        {
-            if (text != null)
-            {
-                WriteLog(LogLevel.INFO, text);
-            }
-        }
+        public void Info(string text) => WriteLog(LogLevel.INFO, text);
 
         /// <summary>
         /// Log a TRACE message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Trace(string text)
-        {
-            if (text != null)
-            {
-                WriteLog(LogLevel.TRACE, text);
-            }
-        }
+        public void Trace(string text) => WriteLog(LogLevel.TRACE, text);
 
         /// <summary>
         /// Log a WARNING message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Warning(string text)
-        {
-            if (text != null)
-            {
-                WriteLog(LogLevel.WARNING, text);
-            }
-        }
+        public void Warning(string text) => WriteLog(LogLevel.WARNING, text);
 
         #endregion Error message logs
 
@@ -195,12 +141,9 @@ namespace nk.logger.csv
         /// <param name="append">Whether to append the old text or replace it</param>
         private void WriteLine(string text, bool append = true)
         {
-            if (text != null || text != "")
+            using (var writer = new StreamWriter(config.GetFullFileName(), append, config.encoding))
             {
-                using (var writer = new StreamWriter(config.GetFullFileName(), append, config.encoding))
-                {
-                    writer.WriteLine(text);
-                }
+                writer.WriteLine(text);
             }
         }
 
@@ -213,6 +156,11 @@ namespace nk.logger.csv
         /// </summary>
         private string ExceptionToErrorString(Exception ex)
         {
+            if (ex == null)
+            {
+                return null;
+            }
+
             string error = "";
             if (!string.IsNullOrEmpty(ex.Message))
             {

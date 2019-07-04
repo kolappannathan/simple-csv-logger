@@ -14,6 +14,8 @@ namespace Logger.API.Controllers
             var exception = new ArgumentNullException("arg-1");
             logger.Error(exception);
             logger.Info("sample info text,");
+            logger.Error("");
+            logger.Fatal(ex:null);
             return "Completed";
         }
     }
