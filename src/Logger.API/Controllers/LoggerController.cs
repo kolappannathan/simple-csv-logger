@@ -11,11 +11,20 @@ namespace Logger.API.Controllers
         public ActionResult<string> Get()
         {
             var logger = new nk.logger.csv.Logger();
-            var exception = new ArgumentNullException("arg-1", new Exception("sample ex"));
+
+            // inner exception should be logged
+            var exception = new ArgumentNullException("arg-1", new Exception("args-2"));
             logger.Error(exception);
+
+            // comma should not be logged
             logger.Info("sample info text,");
+
+            // should not be logged
             logger.Error("");
+
+            // should not be logged
             logger.Fatal(ex:null);
+
             return "Completed";
         }
     }

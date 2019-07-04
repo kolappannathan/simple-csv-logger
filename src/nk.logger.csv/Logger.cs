@@ -7,16 +7,6 @@ namespace nk.logger.csv
     {
         #region [Declarations]
 
-        private static class LogLevel
-        {
-            public const string TRACE = "TRACE";
-            public const string INFO = "INFO";
-            public const string DEBUG = "DEBUG";
-            public const string WARNING = "WARNING";
-            public const string ERROR = "ERROR";
-            public const string FATAL = "FATAL";
-        }
-
         private readonly LoggerConfig config;
 
         #endregion [Declarations]
@@ -63,19 +53,19 @@ namespace nk.logger.csv
         /// Log an <see cref="Exception"/> as DEBUG
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Debug(Exception ex) => WriteLog(LogLevel.DEBUG, ex?.ToString());
+        public void Debug(Exception ex) => WriteLog(LogLevels.DEBUG, ex?.ToString());
 
         /// <summary>
         /// Log an <see cref="Exception"/> as ERROR
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Error(Exception ex) => WriteLog(LogLevel.ERROR, ex?.ToString());
+        public void Error(Exception ex) => WriteLog(LogLevels.ERROR, ex?.ToString());
 
         /// <summary>
         /// Log an <see cref="Exception"/> as Fatal
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Fatal(Exception ex) => WriteLog(LogLevel.FATAL, ex?.ToString());
+        public void Fatal(Exception ex) => WriteLog(LogLevels.FATAL, ex?.ToString());
 
         #endregion [Exception Logs]
 
@@ -85,37 +75,37 @@ namespace nk.logger.csv
         /// Log a DEBUG message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Debug(string text) => WriteLog(LogLevel.DEBUG, text);
+        public void Debug(string text) => WriteLog(LogLevels.DEBUG, text);
 
         /// <summary>
         /// Log an ERROR message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Error(string text) => WriteLog(LogLevel.ERROR, text);
+        public void Error(string text) => WriteLog(LogLevels.ERROR, text);
 
         /// <summary>
         /// Log a FATAL ERROR message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Fatal(string text) => WriteLog(LogLevel.FATAL, text);
+        public void Fatal(string text) => WriteLog(LogLevels.FATAL, text);
 
         /// <summary>
         /// Log an INFO message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Info(string text) => WriteLog(LogLevel.INFO, text);
+        public void Info(string text) => WriteLog(LogLevels.INFO, text);
 
         /// <summary>
         /// Log a TRACE message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Trace(string text) => WriteLog(LogLevel.TRACE, text);
+        public void Trace(string text) => WriteLog(LogLevels.TRACE, text);
 
         /// <summary>
         /// Log a WARNING message
         /// </summary>
         /// <param name="text">Message to log</param>
-        public void Warning(string text) => WriteLog(LogLevel.WARNING, text);
+        public void Warning(string text) => WriteLog(LogLevels.WARNING, text);
 
         #endregion [Error message logs]
 
