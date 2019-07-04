@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Initialization steps are moved from constructor into a separate function
  - Paramets to Logger are now replaced by config
  - Converted some functions to expression
+ - Moved Log levels into separate class
 
 ### Removed
  - Redunant null checks

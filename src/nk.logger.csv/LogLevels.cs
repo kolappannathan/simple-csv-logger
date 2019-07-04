@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace nk.logger.csv
+﻿namespace nk.logger.csv
 {
     public static class LogLevels
     {
