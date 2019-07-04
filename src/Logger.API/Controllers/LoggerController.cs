@@ -11,7 +11,7 @@ namespace Logger.API.Controllers
         public ActionResult<string> Get()
         {
             var logger = new nk.logger.csv.Logger();
-            var exception = new ArgumentNullException("arg-1");
+            var exception = new ArgumentNullException("arg-1", new Exception("sample ex"));
             logger.Error(exception);
             logger.Info("sample info text,");
             logger.Error("");

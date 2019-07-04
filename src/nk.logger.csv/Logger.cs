@@ -6,7 +6,7 @@ namespace nk.logger.csv
 {
     public class Logger
     {
-        #region Declarations
+        #region [Declarations]
 
         private static class LogLevel
         {
@@ -18,9 +18,11 @@ namespace nk.logger.csv
             public const string FATAL = "FATAL";
         }
 
-        private readonly LoggerConfig config; 
+        private readonly LoggerConfig config;
 
-        #endregion Declarations
+        #endregion [Declarations]
+
+        #region [Initialization]
 
         /// <summary>
         /// Initiate an instance of Logger class with default config
@@ -52,9 +54,11 @@ namespace nk.logger.csv
             }
         }
 
-        #region Public Logger functions
+        #endregion [Initialization]
 
-        #region Exception Logs
+        #region [Public Logger functions]
+
+        #region [Exception Logs]
 
         /// <summary>
         /// Log an <see cref="Exception"/> as DEBUG
@@ -74,9 +78,9 @@ namespace nk.logger.csv
         /// <param name="ex">Exception to log</param>
         public void Fatal(Exception ex) => WriteLog(LogLevel.FATAL, ExceptionToErrorString(ex));
 
-        #endregion Exception Logs
+        #endregion [Exception Logs]
 
-        #region Error message logs
+        #region [Error message logs]
 
         /// <summary>
         /// Log a DEBUG message
@@ -114,11 +118,11 @@ namespace nk.logger.csv
         /// <param name="text">Message to log</param>
         public void Warning(string text) => WriteLog(LogLevel.WARNING, text);
 
-        #endregion Error message logs
+        #endregion [Error message logs]
 
-        #endregion Public Logger functions
+        #endregion [Public Logger functions]
 
-        #region Write functions
+        #region [Write functions]
 
         /// <summary>
         /// Adds date time, loglevel to error text and calls <see cref="WriteLine(string, bool)"/>
@@ -147,9 +151,9 @@ namespace nk.logger.csv
             }
         }
 
-        #endregion Write Functions
+        #endregion [Write Functions]
 
-        #region Helper Functions
+        #region [Helper Functions]
 
         /// <summary>
         /// Builds error text from an <see cref="Exception"/>
@@ -190,6 +194,6 @@ namespace nk.logger.csv
                         .Replace(((char)0x2029).ToString(), string.Empty); // paragraph separator
         }
 
-        #endregion Helper Functions
+        #endregion [Helper Functions]
     }
 }
