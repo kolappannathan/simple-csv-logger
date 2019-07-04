@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 
 namespace nk.logger.csv
 {
@@ -64,19 +63,19 @@ namespace nk.logger.csv
         /// Log an <see cref="Exception"/> as DEBUG
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Debug(Exception ex) => WriteLog(LogLevel.DEBUG, ExceptionToErrorString(ex));
+        public void Debug(Exception ex) => WriteLog(LogLevel.DEBUG, ex?.ToString());
 
         /// <summary>
         /// Log an <see cref="Exception"/> as ERROR
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Error(Exception ex) => WriteLog(LogLevel.ERROR, ExceptionToErrorString(ex));
+        public void Error(Exception ex) => WriteLog(LogLevel.ERROR, ex?.ToString());
 
         /// <summary>
         /// Log an <see cref="Exception"/> as Fatal
         /// </summary>
         /// <param name="ex">Exception to log</param>
-        public void Fatal(Exception ex) => WriteLog(LogLevel.FATAL, ExceptionToErrorString(ex));
+        public void Fatal(Exception ex) => WriteLog(LogLevel.FATAL, ex?.ToString());
 
         #endregion [Exception Logs]
 
@@ -154,32 +153,6 @@ namespace nk.logger.csv
         #endregion [Write Functions]
 
         #region [Helper Functions]
-
-        /// <summary>
-        /// Builds error text from an <see cref="Exception"/>
-        /// </summary>
-        private string ExceptionToErrorString(Exception ex)
-        {
-            if (ex == null)
-            {
-                return null;
-            }
-
-            string error = "";
-            if (!string.IsNullOrEmpty(ex.Message))
-            {
-                error += $"Message: {ex.Message};";
-            }
-            if (!string.IsNullOrEmpty(ex.StackTrace))
-            {
-                error += $"StackTrace: {ex.StackTrace};";
-            }
-            if (ex.InnerException != null)
-            {
-                error += $"InnerException:{ex.InnerException.Message}";
-            }
-            return error;
-        }
 
         /// <summary>
         /// Removes all line endings from the text
