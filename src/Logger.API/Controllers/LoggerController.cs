@@ -9,8 +9,12 @@ namespace Logger.API.Controllers
     {
         [HttpGet("")]
         public ActionResult<string> Get()
-        {
-            var logger = new nk.logger.csv.Logger();
+        {            
+            var config = new nk.logger.csv.LoggerConfig();
+
+            config.SetReplacementValue(';');
+
+            var logger = new nk.logger.csv.Logger(config);
 
             // inner exception should be logged
             var exception = new ArgumentNullException("arg-1", new Exception("args-2"));

@@ -8,7 +8,7 @@
     <Product>Simple CSV Logger</Product>
     <RepositoryUrl>https://github.com/kolappannathan/simple-csv-logger</RepositoryUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
-    <Version>2.0.0.0</Version>
+    <Version>2.0.1.0</Version>
     <Description>A Logger to log errors and exceptions inrto a CSV file.</Description>
     <PackageProjectUrl>https://kolappannathan.github.io/projects/simple-csv-logger/index.html</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -22,8 +22,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <ApplicationIcon>csv.logger.ico</ApplicationIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/kolappannathan/simple-csv-logger/master/icons/csv.logger.ico</PackageIconUrl>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
+    <FileVersion>2.0.1.0</FileVersion>
   </PropertyGroup>
 
 </Project>

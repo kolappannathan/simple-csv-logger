@@ -108,7 +108,7 @@ namespace nk.logger.csv
 
         public LoggerConfig SetReplacementValue(char replacementVal)
         {
-            if (replacementVal != ' ')
+            if (replacementVal == ' ')
             {
                 throw new ArgumentNullException("Replacement Value cannot be empty");
             }

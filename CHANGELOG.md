@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2019-07-05
+ - Fixing issuse with assigning replacement value
+
 ## [2.0.0] - 2019-07-04
 ### Added
  - New logger config object
