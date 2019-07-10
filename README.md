@@ -29,15 +29,13 @@ namespace Core.Lib
 {
     public class Logger
     {
-        #region [Declarations]
-
         private nk.logger.csv.Logger csvLogger;
-
-        #endregion [Declarations]
 
         public Logger(string dateFormat, string fileName, string relativePath = "", char replacementValue = ';')
         {
             var config = new nk.logger.csv.LoggerConfig();
+            
+            // adding configuration
             config.SetDateTimeFormat(dateFormat)
                 .SetFileName(fileName)
                 .SetRelativePath(relativePath)
