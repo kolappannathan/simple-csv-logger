@@ -7,6 +7,6 @@
 
 This is a simple logger for logging errors in a c# application. But instead of writing the logs to a txt file this logger writes them into a CSV file.
 
-**Downloads**:
+### Downloads
 
 [![Nuget](https://img.shields.io/nuget/v/nk.logger.csv.svg?logo=nuget&style=flat-square)](https://www.nuget.org/packages/nk.logger.csv/)
