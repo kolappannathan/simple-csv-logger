@@ -47,6 +47,8 @@ namespace nk.logger.csv
             encoding = Encoding.UTF8;
         }
 
+        #region [Config variables getter and setters]
+
         #region [Date Format]
 
         public LoggerConfig SetDateTimeFormat(string dateTimeFormat)
@@ -123,22 +125,40 @@ namespace nk.logger.csv
 
         #endregion [Replacement Value]
 
+        #endregion [Config variables getter and setters]
+
+        #region [Other Getter functions]
+
+        #region [Full file path]
+
+        /// <summary>
+        /// Combaines base direstory, relative path returns full file path
+        /// </summary>
+        public string GetFullFilePath()
+        {
+            var fullFilePath = AppDomain.CurrentDomain.BaseDirectory;
+            if (RelativePath != "")
+            {
+                fullFilePath += $"{RelativePath}/";
+            }
+            return fullFilePath;
+        }
+
+        #endregion [Full file path]
+
         #region [Full File Name]
 
         /// <summary>
-        /// Combaines base direstory, relative path and file name from config and return full file path
+        /// Returns full file name with path(base directory + relative path) and extension
         /// </summary>
         public string GetFullFileName()
         {
-            var fullFilename = AppDomain.CurrentDomain.BaseDirectory;
-            if (RelativePath != "")
-            {
-                fullFilename += $"{RelativePath}/";
-            }
-            fullFilename += $"{FileName}.csv";
+            var fullFilename = $"{GetFullFilePath()}{FileName}.csv";
             return fullFilename;
         }
         #endregion [Full File Name]
+
+        #endregion [Other Getter functions]
 
     }
 }

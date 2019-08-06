@@ -37,6 +37,11 @@ namespace nk.logger.csv
         /// </summary>
         private void InitializeLogFile()
         {
+
+            // Creates folders is not present, if present it is ignored automatically
+            Directory.CreateDirectory(config.GetFullFilePath());
+
+            // Creating new file is there is none
             if (!File.Exists(config.GetFullFileName()))
             {
                 WriteLine("Time,Error Level,Error Message", false);

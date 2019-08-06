@@ -5,8 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+ - Created new funtion in config that returns full file path
+ - Directories absent in relative path are now created
+
+### Changed
+ - GetFullFilename function now uses GetFullFilePath method
 
 ## [2.0.1] - 2019-07-05
+### Changed
  - Fixing issuse with assigning replacement value
 
 ## [2.0.0] - 2019-07-04
@@ -14,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - New logger config object
  - New API to test logger
 
-### Changes
+### Changed
  - Multiple comma replacement are merged into one
  - Initialization steps are moved from constructor into a separate function
  - Paramets to Logger are now replaced by config

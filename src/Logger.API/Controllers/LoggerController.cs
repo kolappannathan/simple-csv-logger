@@ -13,6 +13,7 @@ namespace Logger.API.Controllers
             var config = new nk.logger.csv.LoggerConfig();
 
             config.SetReplacementValue(';');
+            config.SetRelativePath("logs");
 
             var logger = new nk.logger.csv.Logger(config);
 
