@@ -5,12 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.1.0] - 2019-08-06
 ### Added
  - Created new funtion in config that returns full file path
  - Directories absent in relative path are now created
+ - Added NuGet desc into version control
 
 ### Changed
  - GetFullFilename function now uses GetFullFilePath method
+
+### Removed
+ - Old NuGet packages
 
 ## [2.0.1] - 2019-07-05
 ### Changed
