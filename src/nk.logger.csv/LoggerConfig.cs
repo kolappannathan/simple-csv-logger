@@ -57,7 +57,7 @@ namespace nk.logger.csv
             {
                 throw new ArgumentNullException("Date Format cannot be empty");
             }
-            this.DateTimeFormat = dateTimeFormat;
+            DateTimeFormat = dateTimeFormat;
             return this;
         }
 
@@ -76,7 +76,7 @@ namespace nk.logger.csv
             {
                 throw new ArgumentNullException("File name cannot be empty");
             }
-            this.FileName = fileName;
+            FileName = fileName;
             return this;
         }
 
@@ -95,7 +95,7 @@ namespace nk.logger.csv
             {
                 throw new ArgumentNullException("Relative path cannot be null");
             }
-            this.RelativePath = relativePath;
+            RelativePath = relativePath.Trim();
             return this;
         }
 
@@ -114,7 +114,7 @@ namespace nk.logger.csv
             {
                 throw new ArgumentNullException("Replacement Value cannot be empty");
             }
-            this.ReplacementValue = replacementVal;
+            ReplacementValue = replacementVal;
             return this;
         }
 
