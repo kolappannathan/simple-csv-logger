@@ -7,7 +7,9 @@ namespace Logger.Tests
 {
     public class TextLogger
     {
-               
+
+        #region [Declarations]
+
         private nk.logger.csv.Logger csvLogger;
         private static class MyVariables
         {
@@ -16,6 +18,8 @@ namespace Logger.Tests
             public const string commaReplacedTxt = "sample info text;";
             public const string commaReplaceFailedTxt = "sample info text,";
         }
+
+        #endregion [Declarations]
 
         [SetUp]
         public void Setup()
@@ -27,12 +31,18 @@ namespace Logger.Tests
             csvLogger = new nk.logger.csv.Logger();
         }
 
+        /// <summary>
+        /// Checks if ErrorLog file is created
+        /// </summary>
         [Test]
         public void TestFileCreation()
         {
             FileAssert.Exists(MyVariables.fileName);
         }
 
+        /// <summary>
+        /// Checks if exceptions and inner exceptions are recorded properly
+        /// </summary>
         [Test]
         public void TestExceptionLogging()
         {
@@ -53,6 +63,9 @@ namespace Logger.Tests
             Assert.IsTrue(isLogged);
         }
 
+        /// <summary>
+        /// Checks if comma is replaced properly
+        /// </summary>
         [Test]
         public void TestCommaReplacement()
         {
