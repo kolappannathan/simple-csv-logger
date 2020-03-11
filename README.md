@@ -1,6 +1,6 @@
 # Simple CSV Logger
 
-[![Website](https://img.shields.io/badge/View-Website-blue.svg?logo=mozilla%20firefox&style=flat-square)](https://kolappannathan.github.io/projects/simple-csv-logger/index.html)
+[![Website](https://img.shields.io/badge/View-Website-blue.svg?logo=mozilla%20firefox&style=flat-square)](https://kolappan.dev/project/simple-csv-logger)
 ![Targets .Net standard 2.0](https://img.shields.io/badge/Targets-.Net%20Standard%202.0-blue?logo=.net&style=flat-square)
 [![GitHub](https://img.shields.io/github/license/kolappannathan/simple-csv-logger.svg?style=flat-square)](#)
 [![GitHub issues](https://img.shields.io/github/issues/kolappannathan/simple-csv-logger.svg?style=flat-square)](#)
