@@ -1,16 +1,16 @@
 # Simple CSV Logger
 
 [![Website](https://img.shields.io/badge/View-Website-blue.svg?logo=mozilla%20firefox&style=flat-square)](https://kolappan.dev/project/simple-csv-logger)
-![Targets .Net standard 2.0](https://img.shields.io/badge/Targets-.Net%20Standard%202.0-blue?logo=.net&style=flat-square)
+![Targets .Net standard 2.0](https://img.shields.io/badge/Targets-.Net%20Standard%202.1-blue?logo=.net&style=flat-square)
 [![GitHub](https://img.shields.io/github/license/kolappannathan/simple-csv-logger.svg?style=flat-square)](#)
 [![GitHub issues](https://img.shields.io/github/issues/kolappannathan/simple-csv-logger.svg?style=flat-square)](#)
 [![GitHub contributors](https://img.shields.io/github/contributors/kolappannathan/simple-csv-logger.svg?color=orange&style=flat-square)](#)
 
 This is a simple logger for logging errors in a c# application. But instead of writing the logs to a txt file this logger writes them into a CSV file.
 
-### Downloads
+**Status :** [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kolappannathan/simple-csv-logger/CI?logo=github&style=flat-square)](https://github.com/kolappannathan/simple-csv-logger/actions?query=workflow%3ACI)
 
-[![Nuget](https://img.shields.io/nuget/v/nk.logger.csv.svg?logo=nuget&style=flat-square)](https://www.nuget.org/packages/nk.logger.csv/)
+**Downloads :** [![Nuget](https://img.shields.io/nuget/v/nk.logger.csv.svg?logo=nuget&style=flat-square)](https://www.nuget.org/packages/nk.logger.csv/)
 
 ### Usage
  1. Install the [nuget package](https://www.nuget.org/packages/nk.logger.csv/).
