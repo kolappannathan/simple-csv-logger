@@ -19,11 +19,9 @@ jobs:
       run: |
         cd ./src
         dotnet restore
-    - name: Build
+    - name: Build & Publish
       run: |
         cd ./src
         dotnet build --configuration Release --no-restore
-    - name: Publish Nuget
-      run: |
         cd ./nk.logger.csv/bin/Release/
         dotnet nuget push "*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_KEY }}
