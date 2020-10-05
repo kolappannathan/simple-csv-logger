@@ -23,6 +23,10 @@ jobs:
       run: |
         cd ./src
         dotnet build --configuration Release --no-restore
+    - name: Test
+      run: |
+       cd ./src
+       dotnet test --no-restore --verbosity normal
     - name: Publish Nuget
       run: |
         cd ./src/nk.logger.csv/bin/Release/
