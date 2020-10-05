@@ -8,9 +8,9 @@
     <Product>Simple CSV Logger</Product>
     <RepositoryUrl>https://github.com/kolappannathan/simple-csv-logger</RepositoryUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
-    <Version>2.1.0.0</Version>
+    <Version>3.0.0.0</Version>
     <Description>A Logger to log errors and exceptions inrto a CSV file.</Description>
-    <PackageProjectUrl>https://kolappannathan.github.io/projects/simple-csv-logger/index.html</PackageProjectUrl>
+    <PackageProjectUrl>https://kolappan.dev/project/simple-csv-logger</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyOriginatorKeyFile>simple-csv-logger.pfx</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -21,9 +21,25 @@
     <NeutralLanguage>en-IN</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <ApplicationIcon>csv.logger.ico</ApplicationIcon>
-    <PackageIconUrl>https://raw.githubusercontent.com/kolappannathan/simple-csv-logger/master/icons/csv.logger.ico</PackageIconUrl>
-    <AssemblyVersion>2.1.0.0</AssemblyVersion>
-    <FileVersion>2.1.0.0</FileVersion>
+    <PackageIconUrl></PackageIconUrl>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <PackageReleaseNotes>### Added
+ - Unit tests
+ - CI via GitHub actions
+ - CD via GitHub actions
+
+### Changed
+ - Changed API to .Net core 3
+ - Minor code optimizations</PackageReleaseNotes>
+    <PackageIcon>csv.logger.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icons\csv.logger.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

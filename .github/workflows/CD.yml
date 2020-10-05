@@ -1,10 +1,9 @@
-name: CI
+name: CD
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  # Trigger CD when a release is published
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -24,7 +23,7 @@ jobs:
       run: |
         cd ./src
         dotnet build --configuration Release --no-restore
-    - name: Test
+    - name: Publish Nuget
       run: |
-       cd ./src
-       dotnet test --no-restore --verbosity normal
+        cd ./nk.logger.csv/bin/Release/
+        dotnet nuget push "*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_KEY }}
