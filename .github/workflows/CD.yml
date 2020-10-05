@@ -6,7 +6,7 @@ on:
     types: [published]
 
 jobs:
-  build:
+  deploy:
     runs-on: windows-latest
     steps:
     - name: Checkout
@@ -19,9 +19,11 @@ jobs:
       run: |
         cd ./src
         dotnet restore
-    - name: Build & Publish
+    - name: Build
       run: |
         cd ./src
         dotnet build --configuration Release --no-restore
-        cd ./nk.logger.csv/bin/Release/
+    - name: Publish Nuget
+      run: |
+        cd ./src/nk.logger.csv/bin/Release/
         dotnet nuget push "*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_KEY }}
