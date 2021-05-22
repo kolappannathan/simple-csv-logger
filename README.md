@@ -15,7 +15,7 @@ This is a simple logger for logging errors in a c# application. But instead of w
  4. Create wrapper functions for the functions you need from csv.logger.
  5. Inherit this base class in your other classes.
 
-#### Sample
+#### Example
 
 Below is a sample base class with configurations,
 
