@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
  - Updating website details
  - Updated dependencies
+ - Updating CI/CD to use .NET 5 SDK
  - Updated tests project to .NET 5
  - API for manually testing the logger is replaced with a console app
 
