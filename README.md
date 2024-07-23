@@ -1,8 +1,9 @@
 # Simple CSV Logger
+
+## **The repository is archived for reference. The package is no longer maintained.**
+
 ![Targets .Net standard 2.0](https://img.shields.io/badge/Targets-.Net%20Standard%202.1-blue?logo=.net&style=flat-square)
 [![GitHub](https://img.shields.io/github/license/kolappannathan/simple-csv-logger.svg?style=flat-square)](#)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kolappannathan/simple-csv-logger/CI?logo=github&style=flat-square&label=CI)](https://github.com/kolappannathan/simple-csv-logger/actions?query=workflow%3ACI)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kolappannathan/simple-csv-logger/CD?logo=github&style=flat-square&label=CD)](https://github.com/kolappannathan/simple-csv-logger/actions?query=workflow%3ACD)
 
 This is a simple logger for logging errors in a c# application. But instead of writing the logs to a txt file this logger writes them into a CSV file.
 
